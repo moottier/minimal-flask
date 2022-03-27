@@ -9,6 +9,7 @@ setup(
     packages=find_packages(),
     license='Apache License 2.0',
     install_requires=[
-        'flask'
+        'flask',
+        'flask-caching'
     ]
 )

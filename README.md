@@ -1,25 +1,17 @@
 # Flask Minimal Structure
-A minimal set of files, folders, and utility scripts for a new Flask project.
+A minimal set of files, folders, and utility scripts for a new Flask REST API.
 
 # Setup
 ```
-git clone https://github.com/moottier/rest-assessment.git
-cd rest-assessment
-.\setup.bat
+git clone https://github.com/moottier/minimal-flask.git
+cd minimal-flask
+./setup
 ```
 
-`.\setup.bat` will setup a virtual environment and install dependencies.
+`./setup` will setup a virtual environment and install dependencies.
 
 # Tests
-`.\test.bat` or `.\test.bat -v` for verbose testing.
+`./test` or `./test -v` for verbose testing.
 
 # Startup
-Run in production mode
-```
-.\start.bat
-```
-
-Run in testing/development mode
-```
-'\start.bat TEST
-```
+Run in production mode with `./start PRD` or testing mode with `./start TEST`
