@@ -13,8 +13,6 @@ def ping():
     return {'success': f"{current_app.config['HOST']}:{current_app.config['PORT']}"}, 200
 
 @api.route('/<item>', methods=['GET'])
+@cache.cached(timeout=10, query_string=True)
 def get(item):
-    print("APP ENV:", current_app.config['ENV'])
-    print("APP DEBUG:", current_app.config['DEBUG'])
-    print("APP TESTING:", current_app.config['TESTING'])
     return {'success': item}, 200
