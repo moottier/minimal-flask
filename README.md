@@ -14,4 +14,4 @@ cd minimal-flask
 `./test` or `./test -v` for verbose testing.
 
 # Startup
-Run in production mode with `./start` or testing mode with `./start TEST`
+Run in production mode with `./start production` or testing mode with `./start`
