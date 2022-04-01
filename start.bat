@@ -1,3 +1,8 @@
 @echo off
 
-cmd /K "%~dp0/venv/Scripts/activate & set FLASK_APP=app:create_app('MyApp', '%1') & cd app & flask run --host=localhost --port=3000 & exit"
+if "%~1"=="" (
+    cmd /K "%~dp0venv\Scripts\activate & python -m package.app development & exit"
+)
+) else (
+    cmd /K "%~dp0venv\Scripts\activate & python -m package.app %1 & exit"
+)

@@ -1,7 +1,7 @@
 import unittest
 from flask import Blueprint, Flask
-from app.app import create_app, register_blueprints
-from app.config import TestingConfig
+from package.app import create_app, register_blueprints
+from package.config import TestingConfig
 
 test_blueprint = Blueprint(
             name = 'test_blueprint', 

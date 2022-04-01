@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='app', 
+    name='minimal-flask', 
     description='My Flask Application',
     author='Andre Mottier',
     author_email='andre.mottier@gmail.com',

@@ -1,2 +1,2 @@
 import unittest
-from app.app import create_app
+from package.app import create_app

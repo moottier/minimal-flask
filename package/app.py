@@ -1,7 +1,7 @@
 from types import ModuleType
 from flask import Flask, Blueprint
-from app import config
-from app import routes
+from package import config
+from package import services
 
 def register_blueprints(app: Flask, routes_module: ModuleType) -> Flask:
     """
@@ -11,25 +11,23 @@ def register_blueprints(app: Flask, routes_module: ModuleType) -> Flask:
         if isinstance(blueprint, Blueprint):
             app.register_blueprint(blueprint)
 
-def create_app(name: str, environment: str) -> Flask:
+def create_app(environment: str) -> Flask:
     """
     Create a flask app
     Return the app after setting config and registering blueprints
     """
-    app = Flask(name)
+    app = Flask('MyApp')
+    
     app.config.from_object(
-        get_config(environment)
+        config.config[environment]
     )
+    services.cache.init_app(app)
+
+    from package import routes
     register_blueprints(app, routes)
     return app
 
-def get_config(environment: str) -> config.BaseConfig:
-    """
-    Get a config object for an environment name
-    """
-    if environment == 'PRD':
-        return config.ProductionConfig
-    elif environment == 'TEST':
-        return config.TestingConfig
-    else:
-        raise NotImplementedError
+if __name__ == '__main__':
+    import sys
+    environment = sys.argv[1]
+    create_app(environment).run()
