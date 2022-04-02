@@ -18,19 +18,27 @@ class ProductionConfig(BaseFlaskConfig):
     DEBUG = False
     TESTING = False
     PORT = 3000
-    SQLALCHEMY_DATABASE_URI = f'sqlite:///{Path(__file__).parents[0] / "app.db"}'
+    SQLALCHEMY_DATABASE_URI = f'sqlite:///{Path(__file__).parents[0] / "prod.db"}'
 
-class TestingConfig(BaseFlaskConfig):
+class DevelopmentConfig(BaseFlaskConfig):
     ENV = 'development'
     FLASK_ENV = 'development'
     DEBUG = True
+    TESTING = False
+    PORT = 3000
+    SQLALCHEMY_DATABASE_URI = f'sqlite:///{Path(__file__).parents[0] / "dev.db"}'
+
+class TestingConfig(BaseFlaskConfig):
+    ENV = 'testing'
+    FLASK_ENV = 'testing'
+    DEBUG = True
     TESTING = True
     PORT = 3000
-    SQLALCHEMY_DATABASE_URI = f'sqlite:///{Path(__file__).parents[0] / "testing.db"}'
+    SQLALCHEMY_DATABASE_URI = f'sqlite:///{Path(__file__).parents[0] / "test.db"}'
 
 config = {
     'production': ProductionConfig,
-    'development': TestingConfig,
+    'development': DevelopmentConfig,
     'testing': TestingConfig,
-    'default': TestingConfig,
+    'default': DevelopmentConfig,
 }

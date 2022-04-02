@@ -11,6 +11,7 @@ setup(
     install_requires=[
         'flask',
         'flask-caching',
-        'Flask-SQLAlchemy'
+        'Flask-SQLAlchemy',
+        'Flask-Migrate'
     ]
 )
