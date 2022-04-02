@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 BASE_CACHE_CONFIG = {'CACHE_TYPE': 'SimpleCache'}
 
@@ -9,6 +10,7 @@ class BaseFlaskConfig:
     TESTING = False
     ENV = 'none'
     DEBUG = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProductionConfig(BaseFlaskConfig):
     ENV = 'production'
@@ -16,6 +18,7 @@ class ProductionConfig(BaseFlaskConfig):
     DEBUG = False
     TESTING = False
     PORT = 3000
+    SQLALCHEMY_DATABASE_URI = f'sqlite:///{Path(__file__).parents[0] / "app.db"}'
 
 class TestingConfig(BaseFlaskConfig):
     ENV = 'development'
@@ -23,6 +26,7 @@ class TestingConfig(BaseFlaskConfig):
     DEBUG = True
     TESTING = True
     PORT = 3000
+    SQLALCHEMY_DATABASE_URI = f'sqlite:///{Path(__file__).parents[0] / "testing.db"}'
 
 config = {
     'production': ProductionConfig,

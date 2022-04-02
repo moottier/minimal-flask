@@ -1,5 +1,5 @@
 from flask import Blueprint, current_app
-from package.services import cache
+from app.services import cache
 
 api = Blueprint(
     name = 'api', 

@@ -1,7 +1,5 @@
 from types import ModuleType
 from flask import Flask, Blueprint
-from package import config
-from package import services
 
 def register_blueprints(app: Flask, routes_module: ModuleType) -> Flask:
     """
@@ -17,14 +15,22 @@ def create_app(environment: str) -> Flask:
     Return the app after setting config and registering blueprints
     """
     app = Flask('MyApp')
-    
-    app.config.from_object(
-        config.config[environment]
-    )
-    services.cache.init_app(app)
 
-    from package import routes
+    from app.config import config
+    app.config.from_object(
+        config[environment]
+    )
+
+    from app.models import db, migrate
+    db.init_app(app)
+    migrate.init_app(app, db, compare_type=True)
+
+    from app.services import cache
+    cache.init_app(app)
+
+    from app import routes
     register_blueprints(app, routes)
+
     return app
 
 if __name__ == '__main__':
